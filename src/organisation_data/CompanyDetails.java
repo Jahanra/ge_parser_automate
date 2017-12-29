@@ -33,6 +33,7 @@ public class CompanyDetails {
 
 		driver.get("https://angel.co/paperspace");// data from excel sheet
 		FoundersUniversityDetails foundersUniversityObj = new FoundersUniversityDetails();
+		FounderDetails foundersObj=new FounderDetails();
 
 		// get company name
 		try {
@@ -153,7 +154,6 @@ public class CompanyDetails {
 			String founderUrl = "//div[@class='founders section']//div[@class='g-lockup top larger']//div[@class='name']//a";
 			List<WebElement> foundersLink = driver.findElements(By.xpath(founderUrl));
 			System.out.println("founders url Size is " + foundersLink.size());
-			// Set<String> founderUniqueDetails = new HashSet<String>();
 			Iterator<WebElement> itr_url = foundersLink.iterator();
 			if (foundersLink.size() > 0) {
 				while (itr_url.hasNext())
@@ -184,11 +184,14 @@ public class CompanyDetails {
 			}
 			wait.until(ExpectedConditions
 					.visibilityOfElementLocated(By.xpath("//div[@id='root_footer']")));
-		} catch (IndexOutOfBoundsException e) {
+		} 
+		catch (IndexOutOfBoundsException e)
+		{
 			e.printStackTrace();
 		}
 		foundersUniversityObj.getFounderUniversaryDetails();
 
+		//foundersObj.getFoundersDetails();
 
 	}
 }
