@@ -35,7 +35,9 @@ public class FoundersUniversityDetails {
 		String foundersDegreePath;
 		List<WebElement> foundersDegree;
 		Iterator<WebElement> itrDegree;
-
+		String foundersExperienceXpath;
+        List<WebElement> foundersExperienceCompanyName;
+        Iterator<WebElement> itrExpCompanyName;
 		WebElement itrFounder;
 		String parenthandle = null;
 		WebDriver driver = DriverSingleton.getInstance().getWebDriver();
@@ -69,7 +71,7 @@ public class FoundersUniversityDetails {
 					{
 						driver.switchTo().window(childhandle);
 						try {
-							Thread.sleep(000L);
+							Thread.sleep(6000L);
 						} 
 						catch (InterruptedException e) {
 							e.printStackTrace();
@@ -92,28 +94,47 @@ public class FoundersUniversityDetails {
 							foundersDegreePath="//div[@class='degree u-colorGray3']";
 							try {
 							foundersDegree=driver.findElements(By.xpath(foundersDegreePath));
-							 System.out.println(foundersDegree);
-							}catch(StaleElementReferenceException e){
-								System.out.println("stale element");
-							}catch (InvalidSelectorException e) {
-								System.out.println("No valid selector found");
-							}catch (NoSuchSessionException e) {
-								System.out.println("No such Session to find for....");
-							}catch (WebDriverException e) {
-								System.out.println("web driver problem");
-							}
-								/* itrDegree = foundersDegree.iterator();
-							 System.out.println("Degree Size------>"+foundersDegree.size());
+							 //System.out.println(foundersDegree);
+							 itrDegree = foundersDegree.iterator();
+							 //System.out.println("Degree Size------>"+foundersDegree.size());
 							if(foundersDegree.size()>0)
 							{
 								while(itrDegree.hasNext())
 								{
 							System.out.println("Degree Name----->"+itrDegree.next().getText());
 
-						     }*/
+						     }
+							}
+							}
 
+							catch(StaleElementReferenceException e){
+								System.out.println("stale element");
+							}catch (InvalidSelectorException e) {
+								System.out.println("No valid selector found");
+							}
+							
+							
+							try {
+								foundersExperienceXpath="//a[@class='u-unstyledLink']";
+								foundersExperienceCompanyName=driver.findElements(By.xpath(foundersExperienceXpath));
+								itrExpCompanyName=foundersExperienceCompanyName.iterator();
+								if(foundersExperienceCompanyName.size()>0)
+								{
+									while(itrExpCompanyName.hasNext())
+									{
+										System.out.println("Experience Company Name---->"+itrExpCompanyName.next().getText());
+									}
+								}
+								
+							}
+							catch (NoSuchSessionException e) {
+								System.out.println("No such Session to find for....");
+							}catch (WebDriverException e) {
+								System.out.println("web driver problem");
+							}
+							 
 						waitTrue = wait.until(ExpectedConditions
-								.visibilityOfElementLocated(By.xpath("//div[@class='u-colorGrayB u-uppercase']")));
+								.visibilityOfElementLocated(By.xpath("//div[@class='degree u-colorGray3']")));
 
 						if (waitTrue.isDisplayed()) {
 
@@ -122,11 +143,11 @@ public class FoundersUniversityDetails {
 						}
 					}
 				}
-//			}
+
 				}
 			}
 				
-			//counter++;
+
 
 
 			catch(IndexOutOfBoundsException e)

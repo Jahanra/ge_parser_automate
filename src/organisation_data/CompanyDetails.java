@@ -21,7 +21,7 @@ public class CompanyDetails {
 	public static void main(String[] args) throws InterruptedException, AWTException {
 		WebDriver driver = DriverSingleton.getInstance().getWebDriver();
 		WebDriverWait wait = CommonUtility.getDriverWait();
-		driver.manage().window().maximize();
+		//driver.manage().window().maximize();
 		String user_name = "jahanra_munshi@yahoo.com";
 		String password = "jahan11$7";
 
@@ -31,7 +31,7 @@ public class CompanyDetails {
 
 		driver.findElement(By.xpath("//input[@type='submit']")).submit();
 
-		driver.get("https://angel.co/paperspace");// data from excel sheet
+		driver.get("https://angel.co/growthenabler");// data from excel sheet
 		FoundersUniversityDetails foundersUniversityObj = new FoundersUniversityDetails();
 		FounderDetails foundersObj=new FounderDetails();
 
